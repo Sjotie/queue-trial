@@ -1,0 +1,16 @@
+name: gate
+# Toy gate of the throwaway trial repository for the landing queue program. The queue dispatches it on a candidate
+# branch; the push run on main is main's own report.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash check.sh
